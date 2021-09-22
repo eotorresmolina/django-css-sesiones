@@ -4,6 +4,8 @@ from django.db import models
 # Debemos importarlo previamente:
 
 from django.contrib.auth.models import User
+from django.db.models.deletion import DO_NOTHING
+from django.db.models.fields import BigAutoField, CharField
 
 # Create your models here.
 
@@ -67,3 +69,22 @@ class WishList(models.Model):
 
     def __str__(self):
         return f'{self.id}'
+
+
+class UserDetail(models.Model):
+    id = models.BigAutoField(db_column='ID', primary_key=True)
+    user = models.ForeignKey(User, verbose_name='User', on_delete=DO_NOTHING, default=1, blank=True)
+    country = models.CharField(verbose_name='Country', max_length=100, default='')
+    state = models.CharField(verbose_name='Province/State', max_length=100, default='')
+    city = models.CharField(verbose_name='City', max_length=100, default='')
+    postal_code = models.CharField(verbose_name='Postal Code', max_length=15, default='0000')
+    cell_phone_number = models.CharField(verbose_name='Cell Phone Number', max_length=20, default='00-0000-0000')
+
+    class Meta:
+        db_table = 'e_commerce_user_detail'
+
+    def __str__(self):
+        return f'{self.id}'
+
+
+

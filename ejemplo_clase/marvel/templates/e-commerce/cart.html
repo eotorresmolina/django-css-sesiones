@@ -1,7 +1,12 @@
 {% extends "e-commerce/base.html" %}
+
+{% block head %}
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+{% endblock %}
+
 {% block title %}Carrito{% endblock %}
 {% block content %}
-{% load static %}
 
 <h1>{{user.username}} este es tu carrito de compras, puedes confirmar el pedido o eliminar elementos de tu carrito.</h1>
 
@@ -21,6 +26,23 @@
                 </li>
                 <li>
                     <h2>Precio unitario: U$S {{comic.price}}</h2>
+                </li>
+                <li>
+                    <h2>Stock Disponible: {{comic.stock_qty}}</h2>
+                </li>
+                <li>
+                    <h2>
+                        <form action="{% url 'updateqty' %}" method="POST">
+                            {% csrf_token %}
+                            <label for="quantity">Cantidad a Comprar:</label>
+                            <input type="number" name="quantity" min="0" max="{{comic.wished_qty_restant}}" placeholder="0">
+                            <input type="hidden" name="comic_id" value="{{comic.id}}">
+                            <button type="submit" class="btn btn-outline-secondary">Agregar al Carrito</button>
+                        </form>
+                    </h2>
+                </li>
+                <li>
+                    <h2>Unidades en el Carrito: {{comic.wished_qty_act}}</h2>
                 </li>
             </ul>
         </td>
@@ -42,7 +64,7 @@
 
     {% endfor %}
 
-    <td>
+     <td>
         <h1>Precio total: U$S {{total_price}}</h1>
     </td>
     <td style="text-align: center;">

@@ -37,6 +37,8 @@ urlpatterns = [
 
     # NOTE: Formularios ocultos
     path('checkbutton', check_button, name='checkbutton'),
+    path('updated', update, name='updated'),
+    path('updateqty', update_qty_wish, name='updateqty'),
 
     # NOTE: Ejemplos de Bootstrap HTML:
     path('bootstrap-login', BootstrapLoginUserView.as_view(), name='loginbootstrap'),

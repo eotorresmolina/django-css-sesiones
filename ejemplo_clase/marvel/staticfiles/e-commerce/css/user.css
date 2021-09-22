@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Marvel:wght@700&display=swap');
+
+#list-group-item__li{
+    background-color: grey;
+    border-color: grey;
+}
+
+.grid-container-item-active{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.grid-item-1{
+    font-size: 28px;
+    text-align: left;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.grid-item-1 i{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 30px;
+}
+
+.grid-item-2{
+    font-size: 28px;
+    text-align: right;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.grid-item-2 a{
+    font-family: 'Marvel', sans-serif;
+    color: whitesmoke;
+    text-decoration: none;
+}
+
+.grid-item-2 a i{
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size: 35px;
+}
+
+
+.list-group__a{
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 100px;
+}
+
+#list-group-item{
+    color: black;
+    font-size: 21px;
+    font-family: 'Marvel', sans-serif;
+    background-color: lightgrey;
+
+}
+
+.list-group-item b{
+    color: blue;
+    font-size: 23px;
+    font-weight: 900;
+    
+}

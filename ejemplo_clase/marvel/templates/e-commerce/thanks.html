@@ -1,9 +1,29 @@
 {% extends "e-commerce/base.html" %}
 
+{% block head %}
+    {% load static %}
+    <link href="{% static 'e-commerce/css/thanks.css'%}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+{% endblock %}
+
 {% block title %}Agradecemos su compra{% endblock %}
 
 {% block content %}
-<p>Gracias por su compra!, por favor, haga click
-    <a href="{% url 'index' %}">Aquí</a> para continuar navegando por el sitio
-</p>
+    <h1 class="h-thanks">Compra Realizada</h1>
+    {% for comic in comics %}
+        <div class="grid-container-thanks">
+            <div class="grid-container__comics"><img src="{{comic.picture}}" class="img-thumbnail" alt="Not found :C"></div>
+            <div class="grid_container__items">
+                <ul id="items-ul">
+                    <li>Título: {{comic.title}}</li>
+                    <li>ID: {{comic.marvel_id}}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+    <h2 class="h-thanks" id="h2-date">Fecha: {{date}}</h2>
+    <h2 class="h-thanks">Hora: {{time}}</h2>
+    <p id="p-thanks">Gracias por su compra!, por favor, haga click
+        <a href="{% url 'index' %}">Aquí</a> para continuar navegando por el sitio.
+    </p>
 {% endblock %}

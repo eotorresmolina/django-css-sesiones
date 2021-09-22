@@ -1,0 +1,33 @@
+.grid-container-thanks{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.grid-container__comics{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.grid_container__items{
+    text-align: left;
+    font-size: 25px;
+    color: whitesmoke;
+}
+
+#items-ul{
+    padding-top: 70px;
+}
+
+.h-thanks{
+    text-align: center;
+    color: whitesmoke;
+}
+
+#h2-date{
+    margin-top: 20px;
+}
+
+#p-thanks{
+    font-size: 23px;
+    margin-top: 15px;
+}
