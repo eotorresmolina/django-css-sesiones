@@ -358,14 +358,14 @@ class UpdateUserView(TemplateView):
         # TODO: Realizar la lógica de actualización de los datos de usuario.
         context =  super().get_context_data(**kwargs)
 
-        user_obj = UserDetail.objects.filter(user_id=self.request.user.pk)
+        user_obj = UserDetail.objects.filter(user=self.request.user.id)
         data_user = user_obj.values().first()
         
         data_user['name'] = self.request.user.first_name
         data_user['surname'] = self.request.user.last_name
         data_user['username'] = self.request.user.username
         data_user['email'] = self.request.user.email
-        
+    
         context['data_user'] = data_user
         return context
 
@@ -413,14 +413,21 @@ class UserView(TemplateView):
             ('email', self.request.user.email)
             ]
 
+        # Verifico si existe ya un registro con los detalles del usuario
+        # logueado, en caso de no existir creo dicho registro.
+        user_obj = UserDetail.objects.filter(user=self.request.user.id)
+        if not user_obj:
+            UserDetail.objects.create(user_id=self.request.user.pk)
+
         # Obtengo una queryset con las 'keys' declaradas en el método "values".
         user_detail_obj = UserDetail.objects.filter(user_id=self.request.user.pk).values('country', 'state', 
                                                     'city', 'postal_code', 'cell_phone_number')
 
         # Obtengo el 1er elemento de la queryset y la itero ya que es un diccionario.
         # Le concateno una tupla a list_user
-        for (k, v) in user_detail_obj.first().items():
-            list_user.append((k, v))
+        if user_detail_obj:
+            for (k, v) in user_detail_obj.first().items():
+                list_user.append((k, v))
 
         context['user_detail'] = list_user      # Le cargo en el contexto la lista "list_user".
 
